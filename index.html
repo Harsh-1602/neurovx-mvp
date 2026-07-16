@@ -1,0 +1,3109 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Neurovx is building PROBRAIN, a multimodal clinical intelligence layer that prepares explainable Alzheimer's assessments for clinician review." />
+  <meta name="theme-color" content="#ffffff" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Neurovx / PROBRAIN — Multimodal clinical intelligence" />
+  <meta property="og:description" content="Blood biomarkers, cognition, imaging, comorbidities, and caregiver signals synthesized into one explainable assessment for clinician review." />
+  <meta name="robots" content="index, follow" />
+  <title>Neurovx / PROBRAIN — Multimodal clinical intelligence</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='white'/%3E%3Cpath d='M15 46V18l17 28V18M32 46l17-28v28' fill='none' stroke='black' stroke-width='4.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E" />
+  <style>
+:root {
+  --color-paper: oklch(1 0 0);
+  --color-surface: oklch(0.987 0 0);
+  --color-surface-strong: oklch(0.958 0 0);
+  --color-ink: oklch(0.115 0 0);
+  --color-ink-soft: oklch(0.255 0 0);
+  --color-muted: oklch(0.47 0 0);
+  --color-faint: oklch(0.67 0 0);
+  --color-line: oklch(0.885 0 0);
+  --color-line-strong: oklch(0.69 0 0);
+  --color-grid: oklch(0.945 0 0);
+  --color-grid-strong: oklch(0.915 0 0);
+  --color-focus: oklch(0.18 0 0);
+  --color-inverse: oklch(1 0 0);
+  --color-backdrop: oklch(0.12 0 0 / 0.36);
+
+  --font-display: "Iowan Old Style", "Baskerville", "Times New Roman", serif;
+  --font-body: "Avenir Next", "Helvetica Neue", Helvetica, Arial, system-ui, sans-serif;
+  --font-label: "SFMono-Regular", "Cascadia Mono", Consolas, "Liberation Mono", monospace;
+
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 4rem;
+  --space-9: 6rem;
+  --space-10: 8rem;
+  --space-11: 10rem;
+
+  --text-2xs: 0.625rem;
+  --text-xs: 0.6875rem;
+  --text-sm: 0.8125rem;
+  --text-base: 1rem;
+  --text-md: 1.125rem;
+  --text-lg: 1.375rem;
+  --text-xl: 1.75rem;
+  --text-2xl: 2.25rem;
+  --text-3xl: 3rem;
+  --text-4xl: 4rem;
+  --text-display-s: clamp(3.25rem, 6.2vw, 6.75rem);
+  --text-display: clamp(4rem, 7.5vw, 8rem);
+
+  --rule-hairline: 1px;
+  --rule-strong: 2px;
+  --radius-xs: 0.1875rem;
+  --radius-sm: 0.375rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1.5rem;
+  --radius-pill: 999px;
+
+  --dur-fast: 120ms;
+  --dur-base: 220ms;
+  --dur-slow: 520ms;
+  --dur-ambient: 5400ms;
+
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in: cubic-bezier(0.7, 0, 0.84, 0);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+
+  --max-width: 94rem;
+  --reading-width: 48rem;
+  --nav-height: 3.5rem;
+  --frame-gutter: clamp(0.625rem, 1.65vw, 1.75rem);
+}
+
+
+/* Hallmark · macrostructure: Map / Diagram · genre: modern-minimal · theme: studied-DNA (Cinder inverted, monochrome) · nav: N5 Floating pill · footer: Ft5 Statement · enrichment: Tier B inline SVG signal map · audience: pitch/basic overview · use: request demo/contact · tone: technical+austere · studied: yes · DNA-source: image + public URL · pre-emit critique: P5 H5 E5 S5 R5 V5 */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  min-width: 0;
+  overflow-x: clip;
+}
+
+html {
+  scroll-behavior: smooth;
+  background: var(--color-paper);
+}
+
+body {
+  color: var(--color-ink);
+  background-color: var(--color-paper);
+  background-image:
+    linear-gradient(to right, var(--color-grid) var(--rule-hairline), transparent var(--rule-hairline)),
+    linear-gradient(to bottom, var(--color-grid) var(--rule-hairline), transparent var(--rule-hairline));
+  background-position: center top;
+  background-size: 5rem 5rem;
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  line-height: 1.55;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+body.is-locked {
+  overflow: hidden;
+}
+
+::selection {
+  color: var(--color-inverse);
+  background: var(--color-ink);
+}
+
+:where(a, button, input, select, textarea, summary):focus-visible {
+  outline: var(--rule-strong) solid var(--color-focus);
+  outline-offset: 0.25rem;
+}
+
+button,
+input,
+select,
+textarea {
+  color: inherit;
+  font: inherit;
+}
+
+button {
+  border: 0;
+}
+
+button,
+a,
+summary {
+  -webkit-tap-highlight-color: transparent;
+}
+
+a {
+  color: inherit;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+h1,
+h2,
+h3,
+p,
+dl,
+dd,
+figure,
+ol,
+ul {
+  margin-top: 0;
+}
+
+h1,
+h2,
+h3 {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  font-style: normal;
+}
+
+p:last-child {
+  margin-bottom: 0;
+}
+
+.skip-link {
+  position: fixed;
+  z-index: 1000;
+  top: var(--space-4);
+  left: var(--space-4);
+  padding: 0.75rem 1rem;
+  transform: translateY(-180%);
+  border: var(--rule-hairline) solid var(--color-ink);
+  border-radius: var(--radius-pill);
+  color: var(--color-inverse);
+  background: var(--color-ink);
+  font-family: var(--font-label);
+  font-size: var(--text-xs);
+  letter-spacing: 0.08em;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: transform var(--dur-base) var(--ease-out);
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+}
+
+.page-frame {
+  position: fixed;
+  z-index: 900;
+  inset: 0;
+  pointer-events: none;
+}
+
+.page-frame::before,
+.page-frame::after {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: var(--rule-hairline);
+  content: "";
+  background: var(--color-line-strong);
+}
+
+.page-frame::before {
+  left: var(--frame-gutter);
+}
+
+.page-frame::after {
+  right: var(--frame-gutter);
+}
+
+.site-width {
+  width: min(calc(100% - (var(--frame-gutter) * 4)), var(--max-width));
+  margin-inline: auto;
+}
+
+.section-rule {
+  position: relative;
+  border-top: var(--rule-hairline) solid var(--color-line-strong);
+  background-color: var(--color-paper);
+}
+
+.section-number {
+  margin-bottom: var(--space-5);
+  color: var(--color-muted);
+  font-family: var(--font-label);
+  font-size: var(--text-xs);
+  line-height: 1;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.button {
+  display: inline-flex;
+  min-height: 2.75rem;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  padding: 0.72rem 1.1rem;
+  border: var(--rule-hairline) solid var(--color-ink);
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  font-size: var(--text-sm);
+  font-weight: 650;
+  line-height: 1;
+  text-decoration: none;
+  white-space: nowrap;
+  transition:
+    color var(--dur-base) var(--ease-out),
+    background-color var(--dur-base) var(--ease-out),
+    transform var(--dur-base) var(--ease-out);
+}
+
+.button:hover {
+  transform: translateY(-0.125rem);
+}
+
+.button:active {
+  transform: translateY(0);
+}
+
+.button-solid {
+  color: var(--color-inverse);
+  background: var(--color-ink);
+}
+
+.button-solid:hover {
+  color: var(--color-inverse);
+  background: var(--color-ink-soft);
+}
+
+.button-outline {
+  color: var(--color-ink);
+  background: var(--color-paper);
+}
+
+.button-outline:hover {
+  background: var(--color-surface-strong);
+}
+
+.button-large {
+  min-height: 3.4rem;
+  padding-inline: 1.45rem;
+}
+
+.text-link {
+  display: inline-flex;
+  min-height: 2.75rem;
+  align-items: center;
+  gap: var(--space-2);
+  padding: 0;
+  cursor: pointer;
+  border-bottom: var(--rule-hairline) solid var(--color-ink);
+  color: var(--color-ink);
+  background: transparent;
+  font-family: var(--font-label);
+  font-size: var(--text-xs);
+  letter-spacing: 0.08em;
+  line-height: 1;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.site-header {
+  position: fixed;
+  z-index: 800;
+  top: var(--space-5);
+  right: 0;
+  left: 0;
+  pointer-events: none;
+}
+
+.nav-shell {
+  display: grid;
+  width: min(calc(100% - (var(--frame-gutter) * 5)), 48rem);
+  min-height: var(--nav-height);
+  margin-inline: auto;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: var(--space-5);
+  padding: 0.35rem 0.4rem 0.35rem 0.85rem;
+  border: var(--rule-hairline) solid var(--color-line-strong);
+  border-radius: var(--radius-pill);
+  background: var(--color-paper);
+  box-shadow: 0 0.75rem 2.5rem var(--color-paper);
+  pointer-events: auto;
+  transition:
+    border-color var(--dur-base) var(--ease-out),
+    transform var(--dur-base) var(--ease-out);
+}
+
+.site-header.is-scrolled .nav-shell {
+  border-color: var(--color-ink-soft);
+}
+
+.brand {
+  display: inline-flex;
+  min-width: 0;
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--color-ink);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.brand-mark {
+  position: relative;
+  display: inline-grid;
+  width: 1.2rem;
+  height: 1.2rem;
+  flex: 0 0 auto;
+  place-items: center;
+  border: var(--rule-hairline) solid var(--color-ink);
+  border-radius: 50%;
+}
+
+.brand-mark span {
+  width: 0.35rem;
+  height: 0.35rem;
+  border-radius: 50%;
+  background: var(--color-ink);
+}
+
+.brand-word {
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  letter-spacing: -0.035em;
+}
+
+.brand-product {
+  color: var(--color-muted);
+  font-family: var(--font-label);
+  font-size: var(--text-2xs);
+  letter-spacing: 0.12em;
+}
+
+.nav-links {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-5);
+}
+
+.nav-links a {
+  position: relative;
+  padding-block: 0.6rem;
+  color: var(--color-ink-soft);
+  font-size: var(--text-sm);
+  line-height: 1;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.nav-links a::after {
+  position: absolute;
+  right: 0;
+  bottom: 0.34rem;
+  left: 0;
+  height: var(--rule-hairline);
+  content: "";
+  background: var(--color-ink);
+  transform: scaleX(0);
+  transform-origin: right center;
+  transition: transform var(--dur-base) var(--ease-out);
+}
+
+.nav-links a:hover::after {
+  transform: scaleX(1);
+  transform-origin: left center;
+}
+
+.nav-cta {
+  min-height: 2.65rem;
+}
+
+.menu-button {
+  display: none;
+  width: 2.8rem;
+  height: 2.8rem;
+  cursor: pointer;
+  place-items: center;
+  border: var(--rule-hairline) solid var(--color-ink);
+  border-radius: 50%;
+  background: var(--color-paper);
+}
+
+.menu-button span {
+  position: absolute;
+  width: 1rem;
+  height: var(--rule-hairline);
+  background: var(--color-ink);
+  transition: transform var(--dur-base) var(--ease-out);
+}
+
+.menu-button span:first-child {
+  transform: translateY(-0.2rem);
+}
+
+.menu-button span:last-child {
+  transform: translateY(0.2rem);
+}
+
+.menu-button[aria-expanded="true"] span:first-child {
+  transform: rotate(45deg);
+}
+
+.menu-button[aria-expanded="true"] span:last-child {
+  transform: rotate(-45deg);
+}
+
+.mobile-menu {
+  width: min(calc(100% - (var(--frame-gutter) * 5)), 30rem);
+  margin: var(--space-3) auto 0;
+  padding: var(--space-4);
+  border: var(--rule-hairline) solid var(--color-line-strong);
+  border-radius: var(--radius-lg);
+  background: var(--color-paper);
+  pointer-events: auto;
+}
+
+.mobile-menu[hidden] {
+  display: none;
+}
+
+.mobile-menu a {
+  display: flex;
+  min-height: 3.2rem;
+  align-items: center;
+  border-bottom: var(--rule-hairline) solid var(--color-line);
+  font-size: var(--text-base);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.mobile-menu .button {
+  width: 100%;
+  margin-top: var(--space-4);
+}
+
+.hero {
+  position: relative;
+  min-height: 100svh;
+  padding-top: clamp(8.5rem, 12vw, 11.5rem);
+  background-color: var(--color-paper);
+}
+
+.hero::before {
+  position: absolute;
+  top: 0;
+  right: 50%;
+  width: var(--rule-hairline);
+  height: 100%;
+  content: "";
+  background: var(--color-grid-strong);
+  opacity: 0.65;
+}
+
+.hero-grid {
+  position: relative;
+  display: grid;
+  min-height: calc(100svh - clamp(8.5rem, 12vw, 11.5rem));
+  grid-template-columns: minmax(0, 0.93fr) minmax(0, 1.07fr);
+  grid-template-rows: 1fr auto;
+  column-gap: clamp(var(--space-6), 4vw, var(--space-9));
+}
+
+.hero-copy {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 0 0 clamp(var(--space-7), 6vw, var(--space-10));
+}
+
+.hero-index {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin-bottom: var(--space-6);
+  color: var(--color-muted);
+  font-family: var(--font-label);
+  font-size: var(--text-xs);
+  letter-spacing: 0.14em;
+  line-height: 1;
+}
+
+.hero-index span:first-child {
+  color: var(--color-ink);
+}
+
+.hero-index::after {
+  width: 3.5rem;
+  height: var(--rule-hairline);
+  content: "";
+  background: var(--color-line-strong);
+}
+
+.hero h1 {
+  max-width: 9.2ch;
+  margin-bottom: var(--space-6);
+  font-family: var(--font-display);
+  font-size: var(--text-display);
+  font-weight: 400;
+  letter-spacing: -0.067em;
+  line-height: 0.88;
+}
+
+.headline-mark {
+  position: relative;
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.headline-mark::after {
+  position: absolute;
+  right: 0.02em;
+  bottom: -0.07em;
+  left: 0.03em;
+  height: var(--rule-hairline);
+  content: "";
+  background: var(--color-ink);
+}
+
+.hero-lede {
+  max-width: 42rem;
+  margin-bottom: var(--space-6);
+  color: var(--color-ink-soft);
+  font-size: clamp(var(--text-md), 1.45vw, var(--text-lg));
+  letter-spacing: -0.018em;
+  line-height: 1.5;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-bottom: var(--space-6);
+}
+
+.clinical-note {
+  display: flex;
+  max-width: 39rem;
+  align-items: flex-start;
+  gap: var(--space-3);
+  margin-bottom: 0;
+  color: var(--color-muted);
+  font-family: var(--font-label);
+  font-size: var(--text-xs);
+  letter-spacing: 0.015em;
+  line-height: 1.55;
+}
+
+.clinical-note span {
+  width: 0.45rem;
+  height: 0.45rem;
+  flex: 0 0 auto;
+  margin-top: 0.3rem;
+  border: var(--rule-hairline) solid var(--color-ink);
+  border-radius: 50%;
+  background: var(--color-ink);
+}
+
+.fusion-figure {
+  position: relative;
+  min-width: 0;
+  align-self: center;
+  margin: 0;
+  border-right: var(--rule-hairline) solid var(--color-line-strong);
+  border-left: var(--rule-hairline) solid var(--color-line-strong);
+  background-color: var(--color-paper);
+  background-image:
+    linear-gradient(to right, var(--color-grid) var(--rule-hairline), transparent var(--rule-hairline)),
+    linear-gradient(to bottom, var(--color-grid) var(--rule-hairline), transparent var(--rule-hairline));
+  background-size: 4rem 4rem;
+  overflow: clip;
+}
+
+.instrument-header,
+.instrument-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  padding: var(--space-4) var(--space-5);
+  color: var(--color-muted);
+  font-family: var(--font-label);
+  font-size: var(--text-2xs);
+  letter-spacing: 0.13em;
+  line-height: 1.35;
+  text-transform: uppercase;
+}
+
+.instrument-header {
+  border-bottom: var(--rule-hairline) solid var(--color-line-strong);
+}
+
+.instrument-footer {
+  border-top: var(--rule-hairline) solid var(--color-line-strong);
+}
+
+.instrument-footer span {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.instrument-footer span::before {
+  width: 0.35rem;
+  height: 0.35rem;
+  content: "";
+  border: var(--rule-hairline) solid var(--color-ink);
+  border-radius: 50%;
+}
+
+.diagram-field {
+  position: relative;
+  min-height: 38rem;
+}
+
+.fusion-diagram {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 760 / 700;
+  overflow: visible;
+  color: var(--color-ink-soft);
+}
+
+.diagram-rules path {
+  fill: none;
+  stroke: var(--color-line-strong);
+  stroke-width: 1.6;
+  vector-effect: non-scaling-stroke;
+}
+
+.diagram-dashes path {
+  fill: none;
+  stroke: var(--color-ink);
+  stroke-width: 2.2;
+  stroke-dasharray: 2 98;
+  stroke-dashoffset: 0;
+  stroke-linecap: round;
+  vector-effect: non-scaling-stroke;
+  animation: signal-flow var(--dur-ambient) linear infinite;
+}
+
+.diagram-dashes path:nth-child(2) {
+  animation-delay: -1.1s;
+}
+
+.diagram-dashes path:nth-child(3) {
+  animation-delay: -2.2s;
+}
+
+.diagram-dashes path:nth-child(4) {
+  animation-delay: -3.3s;
+}
+
+.diagram-dashes path:nth-child(5) {
+  animation-delay: -4.4s;
+}
+
+.node-ring,
+.core-orbit,
+.core-scan {
+  fill: var(--color-paper);
+  stroke: var(--color-line-strong);
+  stroke-width: 1.6;
+  vector-effect: non-scaling-stroke;
+}
+
+.node-dot {
+  fill: var(--color-ink);
+}
+
+.node-name,
+.signal-text,
+.core-title,
+.core-subtitle {
+  font-family: var(--font-label);
+}
+
+.node-name {
+  fill: var(--color-muted);
+  font-size: 14px;
+  letter-spacing: 3px;
+}
+
+.signal-tag {
+  fill: var(--color-paper);
+  stroke: var(--color-line-strong);
+  stroke-width: 1;
+  vector-effect: non-scaling-stroke;
+}
+
+.signal-text {
+  fill: var(--color-ink-soft);
+  font-size: 13px;
+  letter-spacing: 2px;
+}
+
+.core-orbit-outer {
+  stroke: var(--color-line-strong);
+  stroke-dasharray: 2 6;
+  animation: orbit-spin 18s linear infinite;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.core-orbit-inner {
+  stroke: var(--color-ink-soft);
+}
+
+.core-fill {
+  fill: var(--color-paper);
+  stroke: var(--color-ink);
+  stroke-width: 2;
+  vector-effect: non-scaling-stroke;
+}
+
+.core-scan {
+  fill: none;
+  stroke: var(--color-ink);
+  stroke-dasharray: 18 497;
+  stroke-linecap: round;
+  stroke-width: 4;
+  animation: orbit-spin 6s linear infinite;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.core-title {
+  fill: var(--color-ink);
+  font-size: 16px;
+  letter-spacing: 3px;
+}
+
+.core-subtitle {
+  fill: var(--color-muted);
+  font-size: 13px;
+  letter-spacing: 3px;
+}
+
+.telemetry {
+  display: grid;
+  min-height: 4.25rem;
+  grid-column: 1 / -1;
+  grid-template-columns: minmax(0, auto) minmax(10rem, 1fr) minmax(0, auto);
+  align-items: center;
+  gap: var(--space-5);
+  border-top: var(--rule-hairline) solid var(--color-line-strong);
+  background: var(--color-paper);
+  color: var(--color-muted);
+  font-family: var(--font-label);
+  font-size: var(--text-2xs);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.telemetry-status,
+.telemetry-readout {
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+}
+
+.telemetry-status span {
+  width: 0.4rem;
+  height: 0.4rem;
+  margin-right: var(--space-3);
+  border-radius: 50%;
+  background: var(--color-ink);
+  box-shadow: 0 0 0 0.25rem var(--color-surface-strong);
+}
+
+.telemetry-bars {
+  display: flex;
+  height: 2rem;
+  min-width: 0;
+  align-items: end;
+  gap: 0.18rem;
+  overflow: hidden;
+}
+
+.telemetry-bars i {
+  width: min(0.42rem, 1.2vw);
+  min-width: 0.14rem;
+  height: var(--bar-height, 40%);
+  background: var(--color-ink-soft);
+  opacity: var(--bar-opacity, 0.55);
+  animation: bar-drift 3.8s var(--ease-in-out) infinite alternate;
+  animation-delay: var(--bar-delay, 0s);
+}
+
+.burden {
+  padding: clamp(var(--space-9), 11vw, var(--space-11)) 0;
+}
+
+.burden-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr);
+  gap: clamp(var(--space-7), 8vw, var(--space-11));
+  align-items: start;
+}
+
+.burden-statement h2,
+.section-head h2,
+.workflow-intro h2,
+.market-intro h2,
+.roadmap-head h2,
+.team-intro h2,
+.faq-intro h2,
+.contact h2 {
+  font-family: var(--font-display);
+  font-size: var(--text-display-s);
+  font-weight: 400;
+  letter-spacing: -0.06em;
+  line-height: 0.93;
+}
+
+.burden-statement h2 {
+  max-width: 10ch;
+  margin-bottom: var(--space-6);
+}
+
+.burden-statement > p:last-child {
+  max-width: var(--reading-width);
+  color: var(--color-ink-soft);
+  font-size: var(--text-lg);
+  line-height: 1.55;
+}
+
+.stat-ledger {
+  margin: 0;
+  border-top: var(--rule-hairline) solid var(--color-ink);
+}
+
+.stat-ledger > div {
+  display: grid;
+  grid-template-columns: minmax(7rem, 0.42fr) minmax(0, 1fr);
+  align-items: baseline;
+  gap: var(--space-5);
+  padding: var(--space-5) 0;
+  border-bottom: var(--rule-hairline) solid var(--color-line-strong);
+}
+
+.stat-ledger dt {
+  font-family: var(--font-display);
+  font-size: clamp(var(--text-3xl), 5vw, 5.5rem);
+  letter-spacing: -0.055em;
+  line-height: 0.9;
+}
+
+.stat-ledger dd {
+  margin: 0;
+  color: var(--color-ink-soft);
+  font-size: var(--text-md);
+}
+
+.source-line {
+  margin-top: var(--space-4);
+  color: var(--color-muted);
+  font-family: var(--font-label);
+  font-size: var(--text-xs);
+  line-height: 1.6;
+}
+
+.source-line a {
+  text-underline-offset: 0.18em;
+}
+
+.evidence-ribbon {
+  display: grid;
+  margin-top: clamp(var(--space-7), 8vw, var(--space-10));
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: end;
+  gap: var(--space-7);
+  padding: var(--space-5) 0;
+  border-top: var(--rule-hairline) solid var(--color-ink);
+  border-bottom: var(--rule-hairline) solid var(--color-ink);
+}
+
+.evidence-ribbon > div {
+  display: grid;
+  grid-template-columns: 11rem minmax(0, 1fr);
+  align-items: start;
+  gap: var(--space-6);
+}
+
+.evidence-ribbon span,
+.architecture-label,
+.current-build > span,
+.dialog-heading > span {
+  color: var(--color-muted);
+  font-family: var(--font-label);
+  font-size: var(--text-xs);
+  letter-spacing: 0.14em;
+  line-height: 1.45;
+  text-transform: uppercase;
+}
+
+.evidence-ribbon p {
+  max-width: 54rem;
+  margin: 0;
+  color: var(--color-ink-soft);
+  font-size: var(--text-md);
+}
+
+.evidence-ribbon > a {
+  font-family: var(--font-label);
+  font-size: var(--text-xs);
+  letter-spacing: 0.08em;
+  text-decoration: none;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.system {
+  padding: clamp(var(--space-9), 10vw, var(--space-11)) 0;
+}
+
+.section-head {
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(18rem, 0.7fr);
+  column-gap: clamp(var(--space-7), 8vw, var(--space-11));
+  align-items: end;
+}
+
+.section-head .section-number {
+  grid-column: 1 / -1;
+}
+
+.section-head h2 {
+  margin-bottom: 0;
+}
+
+.section-head > p:last-child {
+  margin-bottom: 0.4rem;
+  color: var(--color-ink-soft);
+  font-size: var(--text-lg);
+  line-height: 1.55;
+}
+
+.section-head.compact {
+  grid-template-columns: minmax(0, 1.15fr) minmax(20rem, 0.85fr);
+}
+
+.architecture {
+  display: grid;
+  margin-top: clamp(var(--space-8), 8vw, var(--space-10));
+  grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.18fr) minmax(0, 0.92fr);
+  border-top: var(--rule-hairline) solid var(--color-ink);
+  border-bottom: var(--rule-hairline) solid var(--color-ink);
+}
+
+.architecture > * {
+  min-width: 0;
+}
+
+.architecture-column,
+.architecture-core {
+  padding: var(--space-5);
+}
+
+.architecture-core {
+  border-right: var(--rule-hairline) solid var(--color-line-strong);
+  border-left: var(--rule-hairline) solid var(--color-line-strong);
+  background: var(--color-surface);
+}
+
+.architecture-label {
+  display: flex;
+  min-height: 3rem;
+  align-items: center;
+  border-bottom: var(--rule-hairline) solid var(--color-line-strong);
+}
+
+.architecture ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.architecture-column li,
+.core-stack > div {
+  position: relative;
+  display: grid;
+  min-width: 0;
+  grid-template-columns: 2.2rem minmax(0, 1fr);
+  padding: var(--space-4) 0;
+  border-bottom: var(--rule-hairline) solid var(--color-line);
+}
+
+.architecture-column li:last-child,
+.core-stack > div:last-child {
+  border-bottom: 0;
+}
+
+.architecture-column li > span,
+.core-stack > div > span {
+  grid-row: 1 / 3;
+  color: var(--color-muted);
+  font-family: var(--font-label);
+  font-size: var(--text-xs);
+}
+
+.architecture-column strong,
+.core-stack strong {
+  font-size: var(--text-base);
+  line-height: 1.3;
+}
+
+.architecture-column small,
+.core-stack small {
+  display: block;
+  margin-top: 0.25rem;
+  color: var(--color-muted);
+  font-size: var(--text-sm);
+  line-height: 1.45;
+}
+
+.core-stack > div {
+  grid-template-columns: 2.6rem minmax(0, 1fr);
+  padding: var(--space-5) var(--space-3);
+}
+
+.core-stack strong {
+  font-size: var(--text-md);
+}
+
+.core-flags {
+  display: grid;
+  margin-top: var(--space-4);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  border-top: var(--rule-hairline) solid var(--color-line-strong);
+}
+
+.core-flags span {
+  padding: var(--space-3) var(--space-2);
+  border-right: var(--rule-hairline) solid var(--color-line-strong);
+  color: var(--color-muted);
+  font-family: var(--font-label);
+  font-size: var(--text-2xs);
+  letter-spacing: 0.07em;
+  line-height: 1.4;
+  text-align: center;
+}
+
+.core-flags span:last-child {
+  border-right: 0;
+}
+
+.reference-note {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-7);
+  padding-top: var(--space-5);
+}
+
+.reference-note p {
+  max-width: 66rem;
+  color: var(--color-muted);
+  font-family: var(--font-label);
+  font-size: var(--text-xs);
+  line-height: 1.65;
+}
+
+.reference-note div {
+  display: flex;
+  gap: var(--space-4);
+}
+
+.reference-note a {
+  font-family: var(--font-label);
+  font-size: var(--text-xs);
+  letter-spacing: 0.08em;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.workflow {
+  padding: clamp(var(--space-9), 10vw, var(--space-11)) 0;
+}
+
+.workflow-grid {
+  display: grid;
+  grid-template-columns: minmax(18rem, 0.72fr) minmax(0, 1.28fr);
+  gap: clamp(var(--space-7), 8vw, var(--space-11));
+  align-items: start;
+}
+
+.workflow-intro {
+  position: sticky;
+  top: 8rem;
+}
+
+.workflow-intro h2 {
+  max-width: 8ch;
+  margin-bottom: var(--space-6);
+}
+
+.workflow-intro > p:not(.section-number) {
+  max-width: 34rem;
+  margin-bottom: var(--space-6);
+  color: var(--color-ink-soft);
+  font-size: var(--text-lg);
+}
+
+.workflow-steps {
+  margin: 0;
+  padding: 0;
+  border-top: var(--rule-hairline) solid var(--color-ink);
+  list-style: none;
+}
+
+.workflow-steps li {
+  display: grid;
+  min-width: 0;
+  grid-template-columns: minmax(4rem, 0.22fr) minmax(0, 0.78fr);
+  gap: var(--space-6);
+  padding: clamp(var(--space-6), 5vw, var(--space-8)) 0;
+  border-bottom: var(--rule-hairline) solid var(--color-line-strong);
+}
+
+.step-index {
+  color: var(--color-faint);
+  font-family: var(--font-display);
+  font-size: clamp(var(--text-3xl), 6vw, 6.25rem);
+  letter-spacing: -0.05em;
+  line-height: 0.8;
+}
+
+.workflow-steps h3 {
+  margin-bottom: var(--space-3);
+  font-family: var(--font-display);
+  font-size: clamp(var(--text-2xl), 3.7vw, 4rem);
+  font-weight: 400;
+  letter-spacing: -0.045em;
+  line-height: 0.98;
+}
+
+.workflow-steps p {
+  max-width: 52rem;
+  margin-bottom: var(--space-5);
+  color: var(--color-ink-soft);
+  font-size: var(--text-md);
+  line-height: 1.6;
+}
+
+.step-readout {
+  display: inline-block;
+  padding: 0.5rem 0.65rem;
+  border: var(--rule-hairline) solid var(--color-line-strong);
+  border-radius: var(--radius-xs);
+  color: var(--color-muted);
+  font-family: var(--font-label);
+  font-size: var(--text-2xs);
+  letter-spacing: 0.11em;
+  line-height: 1.4;
+}
+
+.principles {
+  padding: clamp(var(--space-9), 10vw, var(--space-11)) 0;
+}
+
+.principles-ledger {
+  display: grid;
+  margin-top: clamp(var(--space-8), 8vw, var(--space-10));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  border-top: var(--rule-hairline) solid var(--color-ink);
+  border-left: var(--rule-hairline) solid var(--color-line-strong);
+}
+
+.principles-ledger article {
+  min-width: 0;
+  min-height: 14rem;
+  padding: var(--space-5);
+  border-right: var(--rule-hairline) solid var(--color-line-strong);
+  border-bottom: var(--rule-hairline) solid var(--color-line-strong);
+}
+
+.principles-ledger article > span {
+  display: block;
+  margin-bottom: var(--space-8);
+  color: var(--color-muted);
+  font-family: var(--font-label);
+  font-size: var(--text-xs);
+}
+
+.principles-ledger h3 {
+  margin-bottom: var(--space-3);
+  font-family: var(--font-display);
+  font-size: var(--text-2xl);
+  font-weight: 400;
+  letter-spacing: -0.04em;
+  line-height: 1;
+}
+
+.principles-ledger p {
+  color: var(--color-muted);
+  font-size: var(--text-sm);
+  line-height: 1.55;
+}
+
+.market {
+  padding: clamp(var(--space-9), 10vw, var(--space-11)) 0;
+}
+
+.market-grid {
+  display: grid;
+  grid-template-columns: minmax(18rem, 0.72fr) minmax(0, 1.28fr);
+  gap: clamp(var(--space-7), 8vw, var(--space-11));
+  align-items: start;
+}
+
+.market-intro h2 {
+  max-width: 8.5ch;
+  margin-bottom: var(--space-6);
+}
+
+.market-intro > p:last-child {
+  max-width: 36rem;
+  color: var(--color-ink-soft);
+  font-size: var(--text-lg);
+}
+
+.partner-matrix {
+  border-top: var(--rule-hairline) solid var(--color-ink);
+}
+
+.matrix-head,
+.matrix-row {
+  display: grid;
+  min-width: 0;
+  grid-template-columns: minmax(9rem, 0.72fr) minmax(0, 1.35fr) minmax(9rem, 0.72fr);
+  gap: var(--space-5);
+  align-items: start;
+  padding: var(--space-5) 0;
+  border-bottom: var(--rule-hairline) solid var(--color-line-strong);
+}
+
+.matrix-head {
+  padding: var(--space-3) 0;
+  color: var(--color-muted);
+  font-family: var(--font-label);
+  font-size: var(--text-xs);
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+}
+
+.matrix-row strong {
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  font-weight: 400;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+}
+
+.matrix-row span {
+  color: var(--color-ink-soft);
+  line-height: 1.55;
+}
+
+.matrix-row span:last-child {
+  color: var(--color-muted);
+  font-family: var(--font-label);
+  font-size: var(--text-sm);
+}
+
+.roadmap {
+  padding: clamp(var(--space-9), 10vw, var(--space-11)) 0;
+}
+
+.roadmap-head {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(18rem, 0.55fr);
+  gap: clamp(var(--space-7), 8vw, var(--space-11));
+  align-items: end;
+}
+
+.roadmap-head .section-number {
+  grid-column: 1 / -1;
+}
+
+.roadmap-head h2 {
+  margin-bottom: 0;
+}
+
+.roadmap-head > p:last-child {
+  margin-bottom: 0.5rem;
+  color: var(--color-ink-soft);
+  font-size: var(--text-lg);
+}
+
+.roadmap-track {
+  display: grid;
+  margin-top: clamp(var(--space-8), 8vw, var(--space-10));
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  border-top: var(--rule-hairline) solid var(--color-ink);
+  border-left: var(--rule-hairline) solid var(--color-line-strong);
+}
+
+.roadmap-phase {
+  position: relative;
+  min-width: 0;
+  min-height: 20rem;
+  padding: var(--space-5);
+  border-right: var(--rule-hairline) solid var(--color-line-strong);
+  border-bottom: var(--rule-hairline) solid var(--color-line-strong);
+}
+
+.roadmap-phase.is-current {
+  background: var(--color-surface-strong);
+}
+
+.roadmap-phase.is-current::before {
+  position: absolute;
+  top: -0.25rem;
+  right: -0.25rem;
+  width: 0.5rem;
+  height: 0.5rem;
+  content: "";
+  background: var(--color-ink);
+}
+
+.roadmap-phase > div {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-3);
+  margin-bottom: var(--space-9);
+}
+
+.roadmap-phase > div span {
+  font-family: var(--font-display);
+  font-size: var(--text-3xl);
+  letter-spacing: -0.05em;
+  line-height: 1;
+}
+
+.roadmap-phase > div small {
+  color: var(--color-muted);
+  font-family: var(--font-label);
+  font-size: var(--text-2xs);
+  letter-spacing: 0.11em;
+}
+
+.roadmap-phase h3 {
+  margin-bottom: var(--space-3);
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  font-weight: 400;
+  letter-spacing: -0.035em;
+  line-height: 1.05;
+}
+
+.roadmap-phase p {
+  color: var(--color-muted);
+  font-size: var(--text-sm);
+  line-height: 1.55;
+}
+
+.current-build {
+  display: grid;
+  grid-template-columns: 15rem minmax(0, 1fr);
+  gap: var(--space-7);
+  align-items: start;
+  padding-top: var(--space-5);
+}
+
+.current-build ul {
+  display: grid;
+  margin: 0;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--space-5);
+  padding: 0;
+  list-style: none;
+}
+
+.current-build li {
+  position: relative;
+  padding-left: var(--space-5);
+  color: var(--color-ink-soft);
+  font-size: var(--text-sm);
+  line-height: 1.5;
+}
+
+.current-build li::before {
+  position: absolute;
+  top: 0.55rem;
+  left: 0;
+  width: 0.35rem;
+  height: 0.35rem;
+  content: "";
+  border: var(--rule-hairline) solid var(--color-ink);
+  border-radius: 50%;
+  background: var(--color-paper);
+}
+
+.team {
+  padding: clamp(var(--space-9), 10vw, var(--space-11)) 0;
+}
+
+.team-grid {
+  display: grid;
+  grid-template-columns: minmax(18rem, 0.68fr) minmax(0, 1.32fr);
+  gap: clamp(var(--space-7), 8vw, var(--space-11));
+}
+
+.team-intro h2 {
+  max-width: 8.5ch;
+  margin-bottom: var(--space-6);
+}
+
+.team-intro > p:last-child {
+  max-width: 36rem;
+  color: var(--color-ink-soft);
+  font-size: var(--text-lg);
+}
+
+.team-roster {
+  border-top: var(--rule-hairline) solid var(--color-ink);
+}
+
+.team-roster article {
+  display: grid;
+  min-width: 0;
+  grid-template-columns: 4.25rem minmax(0, 1fr);
+  gap: var(--space-5);
+  align-items: center;
+  padding: var(--space-5) 0;
+  border-bottom: var(--rule-hairline) solid var(--color-line-strong);
+}
+
+.team-roster article > span {
+  display: grid;
+  width: 3.25rem;
+  height: 3.25rem;
+  place-items: center;
+  border: var(--rule-hairline) solid var(--color-line-strong);
+  border-radius: 50%;
+  color: var(--color-muted);
+  font-family: var(--font-label);
+  font-size: var(--text-xs);
+  letter-spacing: 0.08em;
+}
+
+.team-roster h3 {
+  margin-bottom: 0.15rem;
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  font-weight: 400;
+  letter-spacing: -0.035em;
+  line-height: 1.05;
+}
+
+.team-roster p {
+  margin-bottom: 0;
+  color: var(--color-muted);
+  font-size: var(--text-sm);
+}
+
+.faq {
+  padding: clamp(var(--space-9), 10vw, var(--space-11)) 0;
+}
+
+.faq-grid {
+  display: grid;
+  grid-template-columns: minmax(18rem, 0.72fr) minmax(0, 1.28fr);
+  gap: clamp(var(--space-7), 8vw, var(--space-11));
+}
+
+.faq-intro h2 {
+  max-width: 8.5ch;
+}
+
+.faq-list {
+  border-top: var(--rule-hairline) solid var(--color-ink);
+}
+
+.faq-list details {
+  border-bottom: var(--rule-hairline) solid var(--color-line-strong);
+}
+
+.faq-list summary {
+  position: relative;
+  display: flex;
+  min-height: 5.5rem;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-5);
+  cursor: pointer;
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  letter-spacing: -0.025em;
+  line-height: 1.25;
+  list-style: none;
+}
+
+.faq-list summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq-list summary::after {
+  display: grid;
+  width: 2rem;
+  height: 2rem;
+  flex: 0 0 auto;
+  content: "+";
+  place-items: center;
+  border: var(--rule-hairline) solid var(--color-line-strong);
+  border-radius: 50%;
+  font-family: var(--font-label);
+  font-size: var(--text-base);
+  transition: transform var(--dur-base) var(--ease-out);
+}
+
+.faq-list details[open] summary::after {
+  transform: rotate(45deg);
+}
+
+.faq-list details p {
+  max-width: 50rem;
+  margin-bottom: var(--space-6);
+  color: var(--color-ink-soft);
+  font-size: var(--text-md);
+  line-height: 1.65;
+}
+
+.contact {
+  padding: clamp(var(--space-9), 10vw, var(--space-11)) 0;
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(18rem, 0.8fr);
+  gap: clamp(var(--space-7), 8vw, var(--space-11));
+  align-items: end;
+}
+
+.contact h2 {
+  max-width: 11ch;
+  margin-bottom: 0;
+}
+
+.contact-panel {
+  padding: var(--space-6) 0;
+  border-top: var(--rule-hairline) solid var(--color-ink);
+  border-bottom: var(--rule-hairline) solid var(--color-ink);
+}
+
+.contact-panel > p {
+  margin-bottom: var(--space-6);
+  color: var(--color-ink-soft);
+  font-size: var(--text-lg);
+}
+
+.contact-direct {
+  display: grid;
+  margin-top: var(--space-6);
+  gap: var(--space-2);
+}
+
+.contact-direct a {
+  width: fit-content;
+  font-family: var(--font-label);
+  font-size: var(--text-sm);
+  text-underline-offset: 0.2em;
+}
+
+.site-footer {
+  border-top: var(--rule-hairline) solid var(--color-ink);
+  background: var(--color-paper);
+}
+
+.footer-statement {
+  padding: clamp(var(--space-8), 9vw, var(--space-11)) 0 var(--space-6);
+}
+
+.footer-statement > p {
+  max-width: 12ch;
+  margin-bottom: clamp(var(--space-8), 9vw, var(--space-10));
+  font-family: var(--font-display);
+  font-size: clamp(4rem, 9vw, 10rem);
+  font-weight: 400;
+  letter-spacing: -0.068em;
+  line-height: 0.85;
+}
+
+.footer-meta,
+.footer-legal {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-5);
+  color: var(--color-muted);
+  font-family: var(--font-label);
+  font-size: var(--text-xs);
+  letter-spacing: 0.08em;
+  line-height: 1.5;
+  text-transform: uppercase;
+}
+
+.footer-meta a {
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.footer-legal {
+  align-items: flex-start;
+  padding: var(--space-5) 0;
+  border-top: var(--rule-hairline) solid var(--color-line-strong);
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.footer-legal p:first-child {
+  max-width: 72rem;
+}
+
+.footer-legal p:last-child {
+  white-space: nowrap;
+}
+
+.demo-dialog {
+  width: min(calc(100% - 2rem), 58rem);
+  max-height: calc(100dvh - 2rem);
+  padding: 0;
+  overflow: auto;
+  border: var(--rule-hairline) solid var(--color-ink);
+  border-radius: var(--radius-lg);
+  color: var(--color-ink);
+  background: var(--color-paper);
+}
+
+.demo-dialog::backdrop {
+  background: var(--color-backdrop);
+  backdrop-filter: blur(0.25rem);
+}
+
+.dialog-shell {
+  position: relative;
+  padding: clamp(var(--space-6), 6vw, var(--space-9));
+  background-color: var(--color-paper);
+  background-image:
+    linear-gradient(to right, var(--color-grid) var(--rule-hairline), transparent var(--rule-hairline)),
+    linear-gradient(to bottom, var(--color-grid) var(--rule-hairline), transparent var(--rule-hairline));
+  background-size: 4rem 4rem;
+}
+
+.dialog-close {
+  position: absolute;
+  z-index: 2;
+  top: var(--space-4);
+  right: var(--space-4);
+  display: grid;
+  width: 2.8rem;
+  height: 2.8rem;
+  cursor: pointer;
+  place-items: center;
+  border: var(--rule-hairline) solid var(--color-ink);
+  border-radius: 50%;
+  background: var(--color-paper);
+  font-family: var(--font-label);
+  font-size: var(--text-lg);
+  line-height: 1;
+}
+
+.dialog-heading {
+  max-width: 46rem;
+  margin-bottom: var(--space-7);
+  padding-right: var(--space-8);
+}
+
+.dialog-heading h2 {
+  margin: var(--space-4) 0;
+  font-family: var(--font-display);
+  font-size: clamp(var(--text-3xl), 6vw, 5.5rem);
+  font-weight: 400;
+  letter-spacing: -0.055em;
+  line-height: 0.92;
+}
+
+.dialog-heading p {
+  color: var(--color-ink-soft);
+  font-size: var(--text-md);
+}
+
+.demo-form {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.field-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-4);
+}
+
+.demo-form label {
+  display: grid;
+  min-width: 0;
+  gap: var(--space-2);
+}
+
+.demo-form label > span {
+  font-family: var(--font-label);
+  font-size: var(--text-xs);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.demo-form input,
+.demo-form select,
+.demo-form textarea {
+  width: 100%;
+  min-width: 0;
+  border: var(--rule-hairline) solid var(--color-line-strong);
+  border-radius: var(--radius-sm);
+  color: var(--color-ink);
+  background: var(--color-paper);
+  transition: border-color var(--dur-base) var(--ease-out);
+}
+
+.demo-form input,
+.demo-form select {
+  min-height: 3.3rem;
+  padding: 0 0.9rem;
+}
+
+.demo-form textarea {
+  min-height: 8rem;
+  resize: vertical;
+  padding: 0.9rem;
+}
+
+.demo-form input:hover,
+.demo-form select:hover,
+.demo-form textarea:hover,
+.demo-form input:focus,
+.demo-form select:focus,
+.demo-form textarea:focus {
+  border-color: var(--color-ink);
+}
+
+.demo-form textarea::placeholder {
+  color: var(--color-faint);
+}
+
+.form-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-top: var(--space-2);
+}
+
+.form-status {
+  color: var(--color-muted);
+  font-family: var(--font-label);
+  font-size: var(--text-xs);
+  line-height: 1.55;
+}
+
+.reveal {
+  opacity: 1;
+  transform: none;
+}
+
+.reveal.is-visible {
+  animation: reveal-in var(--dur-slow) var(--ease-out) both;
+}
+
+@keyframes reveal-in {
+  from {
+    opacity: 0;
+    transform: translateY(1.25rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes signal-flow {
+  to {
+    stroke-dashoffset: -100;
+  }
+}
+
+@keyframes orbit-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes bar-drift {
+  from {
+    transform: scaleY(0.72);
+  }
+  to {
+    transform: scaleY(1);
+  }
+}
+
+@media (max-width: 78rem) {
+  .site-width {
+    width: min(calc(100% - (var(--frame-gutter) * 3.5)), var(--max-width));
+  }
+
+  .hero-grid {
+    grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+    column-gap: var(--space-6);
+  }
+
+  .hero h1 {
+    font-size: clamp(3.85rem, 7vw, 6.5rem);
+  }
+
+  .instrument-footer {
+    flex-wrap: wrap;
+    justify-content: flex-start;
+  }
+
+  .architecture {
+    grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.2fr) minmax(0, 0.85fr);
+  }
+
+  .architecture-column,
+  .architecture-core {
+    padding: var(--space-4);
+  }
+
+  .roadmap-track {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .roadmap-phase {
+    min-height: 17rem;
+  }
+
+  .current-build {
+    grid-template-columns: 12rem minmax(0, 1fr);
+  }
+
+  .current-build ul {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 64rem) {
+  .nav-shell {
+    width: min(calc(100% - (var(--frame-gutter) * 4)), 44rem);
+  }
+
+  .nav-links {
+    gap: var(--space-4);
+  }
+
+  .hero {
+    min-height: auto;
+    padding-top: 8rem;
+  }
+
+  .hero::before {
+    display: none;
+  }
+
+  .hero-grid {
+    min-height: 0;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto auto auto;
+  }
+
+  .hero-copy {
+    max-width: 56rem;
+    padding: var(--space-8) 0 var(--space-9);
+  }
+
+  .hero h1 {
+    max-width: 9ch;
+    font-size: clamp(4.2rem, 10vw, 7.2rem);
+  }
+
+  .fusion-figure {
+    border-top: var(--rule-hairline) solid var(--color-line-strong);
+  }
+
+  .diagram-field {
+    min-height: 0;
+  }
+
+  .telemetry {
+    grid-row: 3;
+  }
+
+  .burden-grid,
+  .section-head,
+  .section-head.compact,
+  .workflow-grid,
+  .market-grid,
+  .roadmap-head,
+  .team-grid,
+  .faq-grid,
+  .contact-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .burden-statement h2,
+  .workflow-intro h2,
+  .market-intro h2,
+  .team-intro h2,
+  .faq-intro h2 {
+    max-width: 12ch;
+  }
+
+  .section-head > p:last-child,
+  .roadmap-head > p:last-child {
+    max-width: 44rem;
+    margin-top: var(--space-5);
+  }
+
+  .architecture {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .architecture-core {
+    border-top: var(--rule-hairline) solid var(--color-line-strong);
+    border-right: 0;
+    border-bottom: var(--rule-hairline) solid var(--color-line-strong);
+    border-left: 0;
+  }
+
+  .workflow-intro {
+    position: static;
+  }
+
+  .workflow-steps {
+    margin-top: var(--space-7);
+  }
+
+  .market-intro,
+  .team-intro,
+  .faq-intro {
+    margin-bottom: var(--space-6);
+  }
+
+  .roadmap-track {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .current-build {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .contact-panel {
+    max-width: 42rem;
+  }
+}
+
+@media (max-width: 48rem) {
+  :root {
+    --frame-gutter: 0.625rem;
+  }
+
+  body {
+    background-size: 3.5rem 3.5rem;
+  }
+
+  .site-width {
+    width: calc(100% - 2.5rem);
+  }
+
+  .page-frame::before {
+    left: var(--frame-gutter);
+  }
+
+  .page-frame::after {
+    right: var(--frame-gutter);
+  }
+
+  .site-header {
+    top: var(--space-3);
+  }
+
+  .nav-shell {
+    width: calc(100% - 2.5rem);
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: var(--space-3);
+    padding-left: 0.75rem;
+  }
+
+  .brand-product,
+  .nav-links,
+  .nav-cta {
+    display: none;
+  }
+
+  .menu-button {
+    position: relative;
+    display: grid;
+  }
+
+  .mobile-menu {
+    width: calc(100% - 2.5rem);
+  }
+
+  .hero {
+    padding-top: 6.5rem;
+  }
+
+  .hero-copy {
+    padding: var(--space-7) 0 var(--space-8);
+  }
+
+  .hero-index {
+    flex-wrap: wrap;
+    margin-bottom: var(--space-5);
+  }
+
+  .hero h1 {
+    max-width: 8.6ch;
+    margin-bottom: var(--space-5);
+    font-size: clamp(3.45rem, 17vw, 5.75rem);
+    line-height: 0.9;
+  }
+
+  .headline-mark {
+    white-space: normal;
+  }
+
+  .hero-lede {
+    font-size: var(--text-md);
+  }
+
+  .hero-actions {
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .hero-actions .button {
+    width: 100%;
+  }
+
+  .instrument-header,
+  .instrument-footer {
+    padding-inline: var(--space-3);
+    font-size: 0.58rem;
+  }
+
+  .instrument-header span:last-child {
+    display: none;
+  }
+
+  .instrument-footer {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .fusion-diagram {
+    width: 116%;
+    max-width: none;
+    margin-left: -8%;
+  }
+
+  .telemetry {
+    min-height: 3.8rem;
+    grid-template-columns: minmax(0, 1fr) minmax(6rem, 0.65fr);
+    gap: var(--space-3);
+  }
+
+  .telemetry-bars {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    height: 1.2rem;
+  }
+
+  .telemetry-readout {
+    justify-self: end;
+    font-size: 0.56rem;
+  }
+
+  .burden,
+  .system,
+  .workflow,
+  .principles,
+  .market,
+  .roadmap,
+  .team,
+  .faq,
+  .contact {
+    padding: var(--space-9) 0;
+  }
+
+  .burden-grid {
+    gap: var(--space-7);
+  }
+
+  .burden-statement h2,
+  .section-head h2,
+  .workflow-intro h2,
+  .market-intro h2,
+  .roadmap-head h2,
+  .team-intro h2,
+  .faq-intro h2,
+  .contact h2 {
+    font-size: clamp(3.15rem, 15vw, 5.2rem);
+  }
+
+  .burden-statement > p:last-child,
+  .workflow-intro > p:not(.section-number),
+  .market-intro > p:last-child,
+  .team-intro > p:last-child,
+  .section-head > p:last-child,
+  .roadmap-head > p:last-child,
+  .contact-panel > p {
+    font-size: var(--text-md);
+  }
+
+  .stat-ledger > div {
+    grid-template-columns: 6.3rem minmax(0, 1fr);
+  }
+
+  .stat-ledger dt {
+    font-size: var(--text-3xl);
+  }
+
+  .stat-ledger dd {
+    font-size: var(--text-base);
+  }
+
+  .evidence-ribbon {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-5);
+  }
+
+  .evidence-ribbon > div {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-3);
+  }
+
+  .evidence-ribbon > a {
+    width: fit-content;
+  }
+
+  .architecture {
+    margin-top: var(--space-7);
+  }
+
+  .architecture-column,
+  .architecture-core {
+    padding: var(--space-4);
+  }
+
+  .core-flags {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .core-flags span {
+    border-right: 0;
+    border-bottom: var(--rule-hairline) solid var(--color-line-strong);
+  }
+
+  .core-flags span:last-child {
+    border-bottom: 0;
+  }
+
+  .reference-note {
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .workflow-steps li {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-4);
+  }
+
+  .step-index {
+    font-size: var(--text-4xl);
+  }
+
+  .workflow-steps h3 {
+    font-size: var(--text-3xl);
+  }
+
+  .principles-ledger {
+    grid-template-columns: minmax(0, 1fr);
+    margin-top: var(--space-7);
+  }
+
+  .principles-ledger article {
+    min-height: 0;
+  }
+
+  .principles-ledger article > span {
+    margin-bottom: var(--space-6);
+  }
+
+  .matrix-head {
+    display: none;
+  }
+
+  .matrix-row {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-3);
+  }
+
+  .matrix-row span:last-child {
+    padding-top: var(--space-3);
+    border-top: var(--rule-hairline) solid var(--color-line);
+  }
+
+  .roadmap-track {
+    grid-template-columns: minmax(0, 1fr);
+    margin-top: var(--space-7);
+  }
+
+  .roadmap-phase {
+    min-height: 0;
+  }
+
+  .roadmap-phase > div {
+    margin-bottom: var(--space-7);
+  }
+
+  .current-build ul {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .team-roster article {
+    grid-template-columns: 3.7rem minmax(0, 1fr);
+  }
+
+  .faq-list summary {
+    min-height: 5rem;
+    font-size: var(--text-lg);
+  }
+
+  .contact-grid {
+    gap: var(--space-7);
+  }
+
+  .footer-statement > p {
+    font-size: clamp(4rem, 20vw, 7rem);
+  }
+
+  .footer-meta,
+  .footer-legal {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .field-row {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .form-actions {
+    flex-direction: column;
+  }
+
+  .form-actions .button {
+    width: 100%;
+  }
+
+  .dialog-shell {
+    padding: var(--space-7) var(--space-4) var(--space-5);
+  }
+
+  .dialog-heading {
+    padding-right: 0;
+  }
+}
+
+@media (max-width: 26rem) {
+  .site-width,
+  .nav-shell,
+  .mobile-menu {
+    width: calc(100% - 2rem);
+  }
+
+  .brand-word {
+    font-size: var(--text-md);
+  }
+
+  .hero h1 {
+    font-size: clamp(3.1rem, 16.5vw, 4.3rem);
+  }
+
+  .hero-lede,
+  .burden-statement > p:last-child,
+  .section-head > p:last-child,
+  .workflow-intro > p:not(.section-number),
+  .market-intro > p:last-child,
+  .roadmap-head > p:last-child,
+  .team-intro > p:last-child,
+  .contact-panel > p {
+    font-size: var(--text-base);
+  }
+
+  .telemetry-status {
+    font-size: 0.54rem;
+  }
+
+  .telemetry-readout {
+    font-size: 0.5rem;
+  }
+
+  .stat-ledger > div {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-2);
+  }
+
+  .reference-note div {
+    flex-wrap: wrap;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+  <div class="page-frame" aria-hidden="true"></div>
+
+  <header class="site-header" data-header>
+    <nav class="nav-shell" aria-label="Primary navigation">
+      <a class="brand" href="#top" aria-label="Neurovx home">
+        <span class="brand-mark" aria-hidden="true"><span></span></span>
+        <span class="brand-word">Neurovx</span>
+        <span class="brand-product">PROBRAIN</span>
+      </a>
+
+      <div class="nav-links" data-desktop-nav>
+        <a href="#system">System</a>
+        <a href="#workflow">Workflow</a>
+        <a href="#roadmap">Roadmap</a>
+        <a href="#team">Team</a>
+      </div>
+
+      <button class="button button-solid nav-cta" type="button" data-open-demo>
+        Request a demo
+      </button>
+
+      <button class="menu-button" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="mobile-menu" data-menu-button>
+        <span></span><span></span>
+      </button>
+    </nav>
+
+    <div class="mobile-menu" id="mobile-menu" hidden data-mobile-menu>
+      <a href="#system">System</a>
+      <a href="#workflow">Workflow</a>
+      <a href="#roadmap">Roadmap</a>
+      <a href="#team">Team</a>
+      <button class="button button-solid" type="button" data-open-demo>Request a demo</button>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="top" aria-labelledby="hero-title">
+      <div class="hero-grid site-width">
+        <div class="hero-copy">
+          <div class="hero-index">
+            <span>00</span>
+            <span>EARLIER SIGNAL SYNTHESIS</span>
+          </div>
+
+          <h1 id="hero-title">Built to catch Alzheimer's <span class="headline-mark">years earlier.</span></h1>
+
+          <p class="hero-lede">PROBRAIN fuses blood biomarkers, cognition, imaging, comorbidities, and caregiver signals into one explainable clinical assessment, prepared for a clinician to review and sign off.</p>
+
+          <div class="hero-actions">
+            <button class="button button-solid button-large" type="button" data-open-demo>Request a demo</button>
+            <a class="button button-outline button-large" href="#system">Explore the system <span aria-hidden="true">↓</span></a>
+          </div>
+
+          <p class="clinical-note"><span aria-hidden="true"></span> Research preview. Clinical decision support, not autonomous diagnosis. No regulatory or accuracy claims.</p>
+        </div>
+
+        <figure class="fusion-figure" aria-labelledby="fusion-caption">
+          <div class="instrument-header" aria-hidden="true">
+            <span>PROBRAIN / SIGNAL MAP</span>
+            <span>FUSION CORE · 5 AGENTS</span>
+          </div>
+
+          <div class="diagram-field">
+            <svg class="fusion-diagram" viewBox="0 0 760 700" role="img" aria-labelledby="fusion-title fusion-desc">
+              <title id="fusion-title">PROBRAIN multimodal signal-fusion diagram</title>
+              <desc id="fusion-desc">Five signal families—biomarkers, cognition, imaging, comorbidities, and clinical history—connect to a central PROBRAIN fusion core for clinician review.</desc>
+
+              <g class="diagram-rules" aria-hidden="true">
+                <path d="M380 342L380 120" />
+                <path d="M434 360L606 246" />
+                <path d="M430 414L554 566" />
+                <path d="M330 414L206 566" />
+                <path d="M326 360L154 246" />
+              </g>
+
+              <g class="diagram-dashes" aria-hidden="true">
+                <path pathLength="100" d="M380 342L380 120" />
+                <path pathLength="100" d="M434 360L606 246" />
+                <path pathLength="100" d="M430 414L554 566" />
+                <path pathLength="100" d="M330 414L206 566" />
+                <path pathLength="100" d="M326 360L154 246" />
+              </g>
+
+              <g class="node node-top">
+                <circle class="node-ring" cx="380" cy="95" r="46" />
+                <circle class="node-dot" cx="380" cy="95" r="5" />
+                <text class="node-name" x="380" y="26" text-anchor="middle">BIOMARKER</text>
+                <rect class="signal-tag" x="214" y="142" width="332" height="44" rx="3" />
+                <text class="signal-text" x="380" y="171" text-anchor="middle">PTAU-217 · AΒETA 42/40</text>
+              </g>
+
+              <g class="node node-right">
+                <circle class="node-ring" cx="632" cy="230" r="46" />
+                <circle class="node-dot" cx="632" cy="230" r="5" />
+                <text class="node-name" x="632" y="170" text-anchor="middle">COGNITION</text>
+                <rect class="signal-tag" x="484" y="284" width="220" height="44" rx="3" />
+                <text class="signal-text" x="594" y="313" text-anchor="middle">MMSE · MOCA</text>
+              </g>
+
+              <g class="node node-bottom-right">
+                <circle class="node-ring" cx="566" cy="592" r="46" />
+                <circle class="node-dot" cx="566" cy="592" r="5" />
+                <text class="node-name" x="566" y="658" text-anchor="middle">IMAGING</text>
+                <rect class="signal-tag" x="452" y="510" width="256" height="44" rx="3" />
+                <text class="signal-text" x="580" y="539" text-anchor="middle">MRI VOLUMETRY · PET</text>
+              </g>
+
+              <g class="node node-bottom-left">
+                <circle class="node-ring" cx="194" cy="592" r="46" />
+                <circle class="node-dot" cx="194" cy="592" r="5" />
+                <text class="node-name" x="194" y="658" text-anchor="middle">COMORBIDITY</text>
+                <rect class="signal-tag" x="44" y="510" width="270" height="44" rx="3" />
+                <text class="signal-text" x="179" y="539" text-anchor="middle">APOE · VASCULAR · METABOLIC</text>
+              </g>
+
+              <g class="node node-left">
+                <circle class="node-ring" cx="128" cy="230" r="46" />
+                <circle class="node-dot" cx="128" cy="230" r="5" />
+                <text class="node-name" x="128" y="170" text-anchor="middle">HISTORY</text>
+                <rect class="signal-tag" x="42" y="284" width="320" height="44" rx="3" />
+                <text class="signal-text" x="202" y="313" text-anchor="middle">CAREGIVER-REPORTED CHANGE</text>
+              </g>
+
+              <g class="fusion-core" aria-hidden="true">
+                <circle class="core-orbit core-orbit-outer" cx="380" cy="386" r="116" />
+                <circle class="core-orbit core-orbit-inner" cx="380" cy="386" r="90" />
+                <circle class="core-fill" cx="380" cy="386" r="72" />
+                <circle class="core-scan" cx="380" cy="386" r="82" />
+                <text class="core-title" x="380" y="378" text-anchor="middle">FUSION</text>
+                <text class="core-subtitle" x="380" y="406" text-anchor="middle">5 AGENTS</text>
+              </g>
+            </svg>
+          </div>
+
+          <figcaption id="fusion-caption" class="instrument-footer">
+            <span>Signal provenance retained</span>
+            <span>Missing data surfaced</span>
+            <span>Clinician sign-off required</span>
+          </figcaption>
+        </figure>
+
+        <div class="telemetry" aria-hidden="true">
+          <div class="telemetry-status"><span></span> FUSION CORE / RESEARCH PREVIEW</div>
+          <div class="telemetry-bars" data-waveform></div>
+          <div class="telemetry-readout">5 SIGNAL FAMILIES · 1 REVIEW</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="burden section-rule" aria-labelledby="burden-title">
+      <div class="site-width burden-grid">
+        <div class="burden-statement reveal">
+          <p class="section-number">01 / WHY NOW</p>
+          <h2 id="burden-title">The disease does not arrive as one clean signal.</h2>
+          <p>Alzheimer's and related dementias create clinical, family, and economic pressure at global scale. Yet the data required to reason about one patient often arrives separately: one lab result, one cognitive score, one imaging summary, one history.</p>
+        </div>
+
+        <div class="burden-data reveal">
+          <dl class="stat-ledger">
+            <div>
+              <dt>57M</dt>
+              <dd>people were living with dementia worldwide in 2021.</dd>
+            </div>
+            <div>
+              <dt>≈10M</dt>
+              <dd>new cases occur globally each year.</dd>
+            </div>
+            <div>
+              <dt>$1.3T</dt>
+              <dd>estimated global economic cost in 2019.</dd>
+            </div>
+          </dl>
+          <p class="source-line">Source: <a href="https://www.who.int/news-room/fact-sheets/detail/dementia" target="_blank" rel="noopener noreferrer">World Health Organization, Dementia fact sheet</a>.</p>
+        </div>
+      </div>
+
+      <div class="site-width evidence-ribbon reveal">
+        <div>
+          <span>THE OPERATING GAP</span>
+          <p>Blood-based biomarkers are entering clinical practice, but even cleared tests are intended to be interpreted with other patient information—not as stand-alone diagnosis.</p>
+        </div>
+        <a href="https://www.fda.gov/news-events/press-announcements/fda-clears-first-blood-test-used-diagnosing-alzheimers-disease" target="_blank" rel="noopener noreferrer">FDA reference, May 2025 <span aria-hidden="true">↗</span></a>
+      </div>
+    </section>
+
+    <section class="system section-rule" id="system" aria-labelledby="system-title">
+      <div class="site-width section-head reveal">
+        <p class="section-number">02 / THE SYSTEM</p>
+        <h2 id="system-title">One intelligence layer.<br />All signals in view.</h2>
+        <p>PROBRAIN is being built to standardize a patient state, route it through specialist reasoning, surface uncertainty, and prepare one clinician-ready assessment with source traceability.</p>
+      </div>
+
+      <div class="site-width architecture reveal" role="group" aria-label="PROBRAIN architecture from inputs through clinical review">
+        <div class="architecture-column input-column">
+          <div class="architecture-label">CLINICAL INPUTS</div>
+          <ul>
+            <li><span>01</span><strong>Labs & biomarkers</strong><small>pTau, amyloid ratios, genetics, metabolic context</small></li>
+            <li><span>02</span><strong>Brain imaging</strong><small>MRI and PET summaries, volumetry, clinician findings</small></li>
+            <li><span>03</span><strong>Cognition</strong><small>MMSE, MoCA, assessments, longitudinal change</small></li>
+            <li><span>04</span><strong>Clinical context</strong><small>Comorbidities, medications, notes, history</small></li>
+            <li><span>05</span><strong>Caregiver / PRO</strong><small>Functional decline, behaviour, observed change</small></li>
+          </ul>
+        </div>
+
+        <div class="architecture-core">
+          <div class="architecture-label">PROBRAIN CORE</div>
+          <div class="core-stack">
+            <div><span>01</span><strong>Input & integration</strong><small>Ingest files, forms, summaries, and structured feeds.</small></div>
+            <div><span>02</span><strong>Workflow orchestration</strong><small>Create the patient state and route specialist review.</small></div>
+            <div><span>03</span><strong>Truth & reference</strong><small>Retain evidence, ranges, provenance, and staging logic.</small></div>
+            <div><span>04</span><strong>Multi-agent reasoning</strong><small>Synthesize biomarkers, cognition, imaging, context, and change.</small></div>
+            <div><span>05</span><strong>Fusion, safety & audit</strong><small>Score confidence, flag conflict, and preserve traceability.</small></div>
+          </div>
+          <div class="core-flags" aria-label="System safeguards">
+            <span>MISSING DATA / SURFACED</span>
+            <span>CONFLICT / FLAGGED</span>
+            <span>PROVENANCE / RETAINED</span>
+          </div>
+        </div>
+
+        <div class="architecture-column output-column">
+          <div class="architecture-label">CLINICIAN REVIEW</div>
+          <ul>
+            <li><span>A</span><strong>Evidence summary</strong><small>One patient view across every connected signal.</small></li>
+            <li><span>B</span><strong>Risk interpretation</strong><small>Evidence-linked reasoning with uncertainty markers.</small></li>
+            <li><span>C</span><strong>Trajectory estimate</strong><small>Progression signal prepared for clinical review.</small></li>
+            <li><span>D</span><strong>Care considerations</strong><small>Questions, follow-up paths, and care context.</small></li>
+            <li><span>E</span><strong>Trial pre-screening</strong><small>Suitability cues before costly confirmatory work.</small></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="site-width reference-note reveal">
+        <p>Research references considered in the product brief include longitudinal, multimodal datasets such as ADNI and NACC. Dataset use, performance, and India-specific validation remain subject to protocol, permissions, and clinical study design.</p>
+        <div>
+          <a href="https://adni.loni.usc.edu/" target="_blank" rel="noopener noreferrer">ADNI <span aria-hidden="true">↗</span></a>
+          <a href="https://www.naccdata.org/" target="_blank" rel="noopener noreferrer">NACC <span aria-hidden="true">↗</span></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="workflow section-rule" id="workflow" aria-labelledby="workflow-title">
+      <div class="site-width workflow-grid">
+        <div class="workflow-intro reveal">
+          <p class="section-number">03 / WORKFLOW</p>
+          <h2 id="workflow-title">From fragmented data to clinical action.</h2>
+          <p>A compact workflow designed for the places data already moves: diagnostic labs, hospitals, memory clinics, specialist practices, and research programs.</p>
+          <button class="text-link" type="button" data-open-demo>See the demo workflow <span aria-hidden="true">↗</span></button>
+        </div>
+
+        <ol class="workflow-steps">
+          <li class="reveal">
+            <div class="step-index">01</div>
+            <div>
+              <h3>Connect the sources</h3>
+              <p>Bring in lab reports, imaging summaries, cognitive scores, notes, comorbidities, and caregiver observations—without forcing every partner into the same starting system.</p>
+              <span class="step-readout">INPUT / PDF · FORM · FEED · SUMMARY</span>
+            </div>
+          </li>
+          <li class="reveal">
+            <div class="step-index">02</div>
+            <div>
+              <h3>Standardize the patient state</h3>
+              <p>Normalize the case into one canonical snapshot. Identify what is present, what conflicts, and what remains missing before reasoning begins.</p>
+              <span class="step-readout">STATE / COMPLETE · CONFLICT · MISSING</span>
+            </div>
+          </li>
+          <li class="reveal">
+            <div class="step-index">03</div>
+            <div>
+              <h3>Reason across specialist agents</h3>
+              <p>Biomarker, cognition, imaging, comorbidity, and longitudinal-change agents contribute to a shared fusion layer instead of producing isolated scores.</p>
+              <span class="step-readout">FUSION / 5 SPECIALIST AGENTS</span>
+            </div>
+          </li>
+          <li class="reveal">
+            <div class="step-index">04</div>
+            <div>
+              <h3>Prepare the clinical review</h3>
+              <p>Deliver an explainable assessment with confidence markers, supporting evidence, open questions, and a source trace. Final judgment and sign-off remain with the clinician.</p>
+              <span class="step-readout">OUTPUT / REVIEW · SIGN-OFF · AUDIT</span>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="principles section-rule" aria-labelledby="principles-title">
+      <div class="site-width section-head compact reveal">
+        <p class="section-number">04 / TRUST BY DESIGN</p>
+        <h2 id="principles-title">Clinical judgment stays with the clinician.</h2>
+        <p>The product is in development as decision support. Any clinical deployment would require validation, governance, privacy review, and relevant regulatory pathways.</p>
+      </div>
+
+      <div class="site-width principles-ledger reveal">
+        <article>
+          <span>01</span>
+          <h3>Clinician-in-the-loop</h3>
+          <p>PROBRAIN prepares the assessment; the physician retains final judgment.</p>
+        </article>
+        <article>
+          <span>02</span>
+          <h3>Confidence-scored</h3>
+          <p>Outputs carry uncertainty markers instead of presenting false certainty.</p>
+        </article>
+        <article>
+          <span>03</span>
+          <h3>Explainable & auditable</h3>
+          <p>Every conclusion is designed to retain evidence links, source provenance, and review history.</p>
+        </article>
+        <article>
+          <span>04</span>
+          <h3>Safe with incomplete data</h3>
+          <p>Missing and conflicting inputs are surfaced as part of the assessment.</p>
+        </article>
+        <article>
+          <span>05</span>
+          <h3>India-first deployment</h3>
+          <p>Workflow planning accounts for document-heavy, bilingual, and distributed clinical environments.</p>
+        </article>
+        <article>
+          <span>06</span>
+          <h3>Pilot-led validation</h3>
+          <p>Product claims are intended to advance only through lab co-builds and clinical studies.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="market section-rule" aria-labelledby="market-title">
+      <div class="site-width market-grid">
+        <div class="market-intro reveal">
+          <p class="section-number">05 / ENTRY POINTS</p>
+          <h2 id="market-title">Built for the first places the data already flows.</h2>
+          <p>A lab-first wedge creates the route into hospitals, specialist practices, and trial workflows—one core intelligence layer, adapted to each partner's operating model.</p>
+        </div>
+
+        <div class="partner-matrix reveal" role="table" aria-label="Initial PROBRAIN partner pathways">
+          <div class="matrix-head" role="row">
+            <span role="columnheader">Partner</span>
+            <span role="columnheader">What PROBRAIN adds</span>
+            <span role="columnheader">Commercial path</span>
+          </div>
+          <div class="matrix-row" role="row">
+            <strong role="cell">Diagnostic labs</strong>
+            <span role="cell">Contextual interpretation around biomarker and senior-health panels.</span>
+            <span role="cell">Per-report or co-branded panel.</span>
+          </div>
+          <div class="matrix-row" role="row">
+            <strong role="cell">Hospitals & memory clinics</strong>
+            <span role="cell">A standardized dementia-risk workup and longitudinal follow-up layer.</span>
+            <span role="cell">Enterprise pilot and workflow integration.</span>
+          </div>
+          <div class="matrix-row" role="row">
+            <strong role="cell">Specialist clinics</strong>
+            <span role="cell">Accessible, per-patient decision support without a heavy platform rollout.</span>
+            <span role="cell">Pay-per-use clinical workflow.</span>
+          </div>
+          <div class="matrix-row" role="row">
+            <strong role="cell">Pharma & CROs</strong>
+            <span role="cell">Pre-screening and stratification before costly confirmatory testing.</span>
+            <span role="cell">Screening pilot or program agreement.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="roadmap section-rule" id="roadmap" aria-labelledby="roadmap-title">
+      <div class="site-width roadmap-head reveal">
+        <p class="section-number">06 / ROADMAP</p>
+        <h2 id="roadmap-title">Validate before scale.</h2>
+        <p>The project brief sets a staged path from a demo report and advisory group to lab co-build, hospital validation, broader clinical deployment, and trial intelligence.</p>
+      </div>
+
+      <div class="site-width roadmap-track reveal">
+        <article class="roadmap-phase is-current">
+          <div><span>01</span><small>CURRENT</small></div>
+          <h3>Research + pilot readiness</h3>
+          <p>Demo report, clinical advisory group, partner discovery, test cases.</p>
+        </article>
+        <article class="roadmap-phase">
+          <div><span>02</span><small>NEXT</small></div>
+          <h3>Lab co-build</h3>
+          <p>Launch a NeuroRisk workflow with an initial diagnostic or clinic network.</p>
+        </article>
+        <article class="roadmap-phase">
+          <div><span>03</span><small>VALIDATE</small></div>
+          <h3>Hospital study</h3>
+          <p>Run an ethics-reviewed pilot with a memory clinic or tertiary-care partner.</p>
+        </article>
+        <article class="roadmap-phase">
+          <div><span>04</span><small>EXPAND</small></div>
+          <h3>Clinical distribution</h3>
+          <p>Scale across labs, specialist practices, and enterprise workflows.</p>
+        </article>
+        <article class="roadmap-phase">
+          <div><span>05</span><small>EXTEND</small></div>
+          <h3>Trial intelligence</h3>
+          <p>Develop pre-screening partnerships with pharma and CRO programs.</p>
+        </article>
+      </div>
+
+      <div class="site-width current-build reveal">
+        <span>PROJECT-REPORTED CURRENT FOCUS</span>
+        <ul>
+          <li>Five-agent prototype workflow</li>
+          <li>Explainability and confidence outputs in the demo</li>
+          <li>Research manuscript in process</li>
+          <li>Validation and commercialization partnerships sought</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="team section-rule" id="team" aria-labelledby="team-title">
+      <div class="site-width team-grid">
+        <div class="team-intro reveal">
+          <p class="section-number">07 / TEAM</p>
+          <h2 id="team-title">A cross-functional team for clinical infrastructure.</h2>
+          <p>The project brief brings together neuroscience, AI, deep-tech engineering, hardware, research, and deployment.</p>
+        </div>
+
+        <div class="team-roster reveal">
+          <article><span>KG</span><div><h3>Kirtika Goyal</h3><p>Builder · research & key accounts</p></div></article>
+          <article><span>DS</span><div><h3>Dr. Sharika</h3><p>Neuroscience medical officer</p></div></article>
+          <article><span>HG</span><div><h3>Harsh Gupta</h3><p>Deep-tech engineer · AI research</p></div></article>
+          <article><span>PS</span><div><h3>Prajjwal Singh</h3><p>Hardware engineer</p></div></article>
+          <article><span>DD</span><div><h3>Dr. Daniel</h3><p>Neuroscience researcher</p></div></article>
+          <article><span>IG</span><div><h3>Ishaan Gupta</h3><p>Forward-deployed agentic engineer</p></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="faq section-rule" aria-labelledby="faq-title">
+      <div class="site-width faq-grid">
+        <div class="faq-intro reveal">
+          <p class="section-number">08 / QUESTIONS</p>
+          <h2 id="faq-title">What a first conversation should clarify.</h2>
+        </div>
+
+        <div class="faq-list reveal">
+          <details>
+            <summary>Does PROBRAIN diagnose Alzheimer's?</summary>
+            <p>No. The current product is presented as a research-stage clinical decision-support concept. It is designed to prepare an explainable assessment for clinician review, not to make an autonomous diagnosis.</p>
+          </details>
+          <details>
+            <summary>What data can the system work with?</summary>
+            <p>The product architecture is designed around blood biomarkers, cognition, imaging summaries, clinical history and comorbidities, caregiver or patient-reported change, and longitudinal context.</p>
+          </details>
+          <details>
+            <summary>Who is the initial partner?</summary>
+            <p>The near-term wedge is diagnostic labs and clinical networks, followed by hospitals, memory clinics, specialist practices, and research or trial programs.</p>
+          </details>
+          <details>
+            <summary>What happens in a demo?</summary>
+            <p>The team walks through the signal-fusion workflow, an illustrative clinician report, explainability and confidence markers, and a proposed pilot path for your organisation.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact section-rule" id="contact" aria-labelledby="contact-title">
+      <div class="site-width contact-grid reveal">
+        <div>
+          <p class="section-number">09 / CONTACT</p>
+          <h2 id="contact-title">Bring us a workflow.<br />We'll show where PROBRAIN fits.</h2>
+        </div>
+        <div class="contact-panel">
+          <p>For diagnostic labs, hospital teams, memory clinics, research partners, pharma, CROs, and early institutional supporters.</p>
+          <button class="button button-solid button-large" type="button" data-open-demo>Request a demo</button>
+          <div class="contact-direct">
+            <a href="mailto:nexvivalabs@gmail.com">nexvivalabs@gmail.com</a>
+            <a href="tel:+918700735350">+91 87007 35350</a>
+            <a href="tel:+917021042810">+91 70210 42810</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="site-width footer-statement">
+      <p>Building the infrastructure in neurosciences.</p>
+      <div class="footer-meta">
+        <span>NEUROVX / PROBRAIN</span>
+        <span>INDIA · RESEARCH PREVIEW</span>
+        <a href="#top">Back to top ↑</a>
+      </div>
+    </div>
+    <div class="site-width footer-legal">
+      <p>PROBRAIN is in development. This website is for partnership and demonstration discussions and is not medical advice, a screening service, or a claim of regulatory clearance.</p>
+      <p>© <span data-year></span> Neurovx.</p>
+    </div>
+  </footer>
+
+  <dialog class="demo-dialog" data-demo-dialog aria-labelledby="demo-title">
+    <div class="dialog-shell">
+      <button class="dialog-close" type="button" aria-label="Close demo request" data-close-demo>×</button>
+      <div class="dialog-heading">
+        <span>DEMO REQUEST / 01</span>
+        <h2 id="demo-title">Tell us where the workflow breaks.</h2>
+        <p>We will reply with a focused PROBRAIN walkthrough for your organisation. Please do not include patient-identifiable or sensitive health information.</p>
+      </div>
+
+      <form class="demo-form" data-demo-form>
+        <div class="field-row">
+          <label>
+            <span>Name</span>
+            <input type="text" name="name" autocomplete="name" required />
+          </label>
+          <label>
+            <span>Work email</span>
+            <input type="email" name="email" autocomplete="email" required />
+          </label>
+        </div>
+        <div class="field-row">
+          <label>
+            <span>Organisation</span>
+            <input type="text" name="organisation" autocomplete="organization" required />
+          </label>
+          <label>
+            <span>Role</span>
+            <select name="role" required>
+              <option value="">Select one</option>
+              <option>Diagnostic lab</option>
+              <option>Hospital or memory clinic</option>
+              <option>Clinician</option>
+              <option>Research or academia</option>
+              <option>Pharma or CRO</option>
+              <option>Investor or institutional partner</option>
+              <option>Other</option>
+            </select>
+          </label>
+        </div>
+        <label>
+          <span>What should the demo focus on?</span>
+          <textarea name="message" rows="5" placeholder="Example: interpreting a blood biomarker panel alongside cognition and imaging summaries."></textarea>
+        </label>
+        <div class="form-actions">
+          <button class="button button-solid button-large" type="submit">Prepare email request</button>
+          <button class="button button-outline button-large" type="button" data-copy-email>Copy team email</button>
+        </div>
+        <p class="form-status" role="status" aria-live="polite" data-form-status>This static prototype opens your email app; it does not send or store form data.</p>
+      </form>
+    </div>
+  </dialog>
+
+  <script>
+(() => {
+  "use strict";
+
+  const body = document.body;
+  const header = document.querySelector("[data-header]");
+  const menuButton = document.querySelector("[data-menu-button]");
+  const mobileMenu = document.querySelector("[data-mobile-menu]");
+  const dialog = document.querySelector("[data-demo-dialog]");
+  const demoForm = document.querySelector("[data-demo-form]");
+  const formStatus = document.querySelector("[data-form-status]");
+  const teamEmail = "nexvivalabs@gmail.com";
+
+  const setMenu = (open) => {
+    if (!menuButton || !mobileMenu) return;
+    menuButton.setAttribute("aria-expanded", String(open));
+    menuButton.setAttribute("aria-label", open ? "Close navigation" : "Open navigation");
+    mobileMenu.hidden = !open;
+  };
+
+  menuButton?.addEventListener("click", () => {
+    const open = menuButton.getAttribute("aria-expanded") !== "true";
+    setMenu(open);
+  });
+
+  mobileMenu?.querySelectorAll("a, button").forEach((item) => {
+    item.addEventListener("click", () => setMenu(false));
+  });
+
+  const openDialog = () => {
+    setMenu(false);
+    if (!dialog) return;
+    if (typeof dialog.showModal === "function") {
+      dialog.showModal();
+      body.classList.add("is-locked");
+      requestAnimationFrame(() => dialog.querySelector("input")?.focus());
+      return;
+    }
+    window.location.href = `mailto:${teamEmail}?subject=${encodeURIComponent("PROBRAIN demo request")}`;
+  };
+
+  const closeDialog = () => {
+    if (!dialog?.open) return;
+    dialog.close();
+  };
+
+  document.querySelectorAll("[data-open-demo]").forEach((button) => {
+    button.addEventListener("click", openDialog);
+  });
+
+  document.querySelector("[data-close-demo]")?.addEventListener("click", closeDialog);
+
+  dialog?.addEventListener("close", () => {
+    body.classList.remove("is-locked");
+  });
+
+  dialog?.addEventListener("click", (event) => {
+    const rect = dialog.getBoundingClientRect();
+    const isBackdrop =
+      event.clientX < rect.left ||
+      event.clientX > rect.right ||
+      event.clientY < rect.top ||
+      event.clientY > rect.bottom;
+    if (isBackdrop) closeDialog();
+  });
+
+  demoForm?.addEventListener("submit", (event) => {
+    event.preventDefault();
+    if (!demoForm.reportValidity()) return;
+
+    const data = new FormData(demoForm);
+    const name = String(data.get("name") || "").trim();
+    const email = String(data.get("email") || "").trim();
+    const organisation = String(data.get("organisation") || "").trim();
+    const role = String(data.get("role") || "").trim();
+    const message = String(data.get("message") || "").trim();
+
+    const subject = `PROBRAIN demo request — ${organisation || name}`;
+    const bodyText = [
+      "Hello Neurovx team,",
+      "",
+      "I would like to request a PROBRAIN demo.",
+      "",
+      `Name: ${name}`,
+      `Work email: ${email}`,
+      `Organisation: ${organisation}`,
+      `Role: ${role}`,
+      "",
+      "Demo focus:",
+      message || "Please share an overview of the multimodal signal-fusion workflow and pilot options.",
+      "",
+      "No patient-identifiable information is included in this request."
+    ].join("\n");
+
+    if (formStatus) {
+      formStatus.textContent = "Opening your email app with a prepared request…";
+    }
+
+    window.location.href = `mailto:${teamEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(bodyText)}`;
+  });
+
+  document.querySelector("[data-copy-email]")?.addEventListener("click", async () => {
+    try {
+      await navigator.clipboard.writeText(teamEmail);
+      if (formStatus) formStatus.textContent = `${teamEmail} copied to your clipboard.`;
+    } catch (_error) {
+      if (formStatus) formStatus.textContent = `Copy this address: ${teamEmail}`;
+    }
+  });
+
+  const year = document.querySelector("[data-year]");
+  if (year) year.textContent = String(new Date().getFullYear());
+
+  const waveform = document.querySelector("[data-waveform]");
+  if (waveform) {
+    const bars = 56;
+    for (let index = 0; index < bars; index += 1) {
+      const bar = document.createElement("i");
+      const waveA = (Math.sin(index * 0.34) + 1) / 2;
+      const waveB = (Math.sin(index * 0.13 + 1.8) + 1) / 2;
+      const height = 22 + Math.round((waveA * 0.68 + waveB * 0.32) * 74);
+      const opacity = 0.38 + ((index % 7) / 12);
+      bar.style.setProperty("--bar-height", `${height}%`);
+      bar.style.setProperty("--bar-opacity", opacity.toFixed(2));
+      bar.style.setProperty("--bar-delay", `${(-index * 0.07).toFixed(2)}s`);
+      waveform.appendChild(bar);
+    }
+  }
+
+  const revealItems = document.querySelectorAll(".reveal:not(.is-visible)");
+  if ("IntersectionObserver" in window && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add("is-visible");
+          observer.unobserve(entry.target);
+        });
+      },
+      { rootMargin: "0px 0px -9% 0px", threshold: 0.08 }
+    );
+    revealItems.forEach((item) => observer.observe(item));
+  } else {
+    revealItems.forEach((item) => item.classList.add("is-visible"));
+  }
+
+  const updateHeader = () => {
+    header?.classList.toggle("is-scrolled", window.scrollY > 32);
+  };
+  updateHeader();
+  window.addEventListener("scroll", updateHeader, { passive: true });
+
+  window.addEventListener("resize", () => {
+    if (window.innerWidth > 768) setMenu(false);
+  });
+})();
+
+  </script>
+</body>
+</html>
